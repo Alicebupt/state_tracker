@@ -1,9 +1,15 @@
 # Read me
+
 ** 目录 **
+
 simulated_dialog.json: 存储由user simulator 和agent产生的对话，每个ID对应一个episode
+
 result.json：存储从上文件的对话中提取出的四元组[s_t,a_t,s_t+1,r]
+
 state_tracker.py: class StateTracker 用于get_state,和追踪对话历史
+
 get_four.py: class GetFour 得到四元组[s_t,a_t,s_t+1,r]
+
 # How to use class GetFour?
 <if __name__ == '__main__':
 
@@ -15,6 +21,7 @@ get_four.py: class GetFour 得到四元组[s_t,a_t,s_t+1,r]
 >
 # Input Format
 <{
+    
     "0": [
         {
             "diaact": "inform",
@@ -34,9 +41,12 @@ get_four.py: class GetFour 得到四元组[s_t,a_t,s_t+1,r]
         }
     ]
 }>
+
 每个ID为一个episode，每个episode里的每一项为一个diaact
+
 # Result
 <{
+    
     "0": [
         # state
         {
@@ -146,8 +156,16 @@ get_four.py: class GetFour 得到四元组[s_t,a_t,s_t+1,r]
         -2
     ]
 }>
+
 每个ID对应一个四元组
+
 每个episode的第一个四元组里的state的agent_action为null
-** 对话状态的判断 **：每个episode结束时，最后一个state["current_slots"]["inform_slots"]里存在phone_number，即获得用户的电话号码即为成功。
-** reward的制定规则 **：对话未完成则为-1，失败-num_turns,成功+2*num_turns
+
+** 对话状态的判断 **
+
+每个episode结束时，最后一个state["current_slots"]["inform_slots"]里存在phone_number，即获得用户的电话号码即为成功。
+
+** reward的制定规则 **
+
+对话未完成则为-1，失败-num_turns,成功+2*num_turns
 
